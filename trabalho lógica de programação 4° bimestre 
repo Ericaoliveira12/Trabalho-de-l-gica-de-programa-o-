@@ -1,0 +1,89 @@
+aq = open('informações.txt','a')
+i=0
+
+while i != 5:
+	print("\n---Menu---\n1 - Cadastrar.\n2 - Ler.\n3 - Deletar.\n4 - Atualizar.\n5 - Sair.\n--")
+	esc=int(input("\nDigite sua Escolha:"))
+	if esc == 1:
+		o=0
+		while o < 1:
+			print("\n--\nPreencha os Espaços Abaixo:")
+			name=input("Digite seu nome: ")
+			email=input("Digite seu Email: ")
+			cpf=input("Digite seu Cpf: ")
+			tell=input("Digite seu numero de telefone: ")
+			local=input("Digite sua localidade: ")
+			o += 1
+			op=int(input("--\n1 - Salvar\n2 - Não salvar\n--\nDigite sua Escolha: "))
+			if op == 1:
+				aq = open('Informações.txt','a')
+				aq.write('\n--\nInformações Cadastradas:\n--\n')
+				aq.write('Nome: '+name+'\n')
+				aq.write('Email: '+email+'\n')
+				aq.write('CPF: '+cpf+'\n')
+				aq.write('Numero de telefone: '+tell+'\n')
+				aq.write('Localidade: '+local+'\n')
+				aq.close()
+			elif op == 2:
+				o -= 1
+	elif esc == 2:
+		aq = open('Informações.txt','r')
+		aq2 = aq.readlines()
+		for linha in aq2:
+			print(linha)
+		aq.close()
+	elif esc == 3:
+		aq = open('Informações.txt','r')
+		aq3 = aq.readlines()
+		if len(aq3) > 1:
+			print("\n--\nSeu Cadastro Foi Deletado.")
+			aq = open('informações.txt','w')
+			aq.write('\n'+'--\nNenhuma Informação Foi Cadastrada.\n--')
+			aq.close()
+		else:
+			print("--\nNão há um Cadastro Salvo.\n--")
+		aq.close()
+	elif esc == 4:
+		aq = open('informações.txt','r')
+		aq4 = aq.readlines()
+		if len(aq4) > 1:
+			o=0
+			while o < 1:
+				print("--\nAtualize seus dados:")
+				name=input("Digite seu novo nome: ")
+				email=input("Digite seu novo Email: ")
+				cpf=input("Digite seu novo CPF: ")
+				tell=input("Digite seu novo nÚmero de telefone: ")
+				local=input("Digite sua nova localidade: ")
+				o += 1
+				op=int(input("--\n1 - Salvar.\n2 - Refazer.\n3 - Voltar ao Menu.\n--\nDigite sua escolha: "))
+				if op == 1:
+					aq = open('Informações.txt','w')
+					aq.write('---Cadastro---\n')
+					aq.write('Nome: '+name+'\n')
+					aq.write('Email: '+email+'\n')
+					aq.write('CPF: '+cpf+'\n')
+					aq.write('Numero de telefone: '+tell+'\n')
+					aq.write('Localidade: '+local+'\n')
+					aq.close()
+				elif op == 2:
+					o-=1
+				elif op == 3:
+					o = 2
+				else:
+					print("!!Essa opção não existe!!")
+		else:
+			print("!!Não há um Cadastro Salvo!!")
+		aq.close()
+		
+	elif esc == 5:
+		sai=int(input("Deseja realmente sair\n1-Sim\n2-Não\nDigite sua escolha: "))
+		if sai == 1:
+			print("Saindo.\n")
+			i=5
+		elif sai == 2:
+			print("Voltando ao Menu Princial.\n")
+	else:
+		print("!!Essa opção não existe!!")
+
+aq.close()
